@@ -27,6 +27,10 @@ public class DizionarioController {
 
 	@FXML
 	private TextField txtParola;
+	
+    @FXML
+    private TextField txtParolaArrivo;
+
 
 	@FXML
 	private Button btnGeneraGrafo;
@@ -36,6 +40,9 @@ public class DizionarioController {
 
 	@FXML
 	private Button btnTrovaTutti;
+	
+    @FXML
+    private Button btnTrovaCammino;
 
 	@FXML
 	private TextArea txtResult;
@@ -61,6 +68,7 @@ public class DizionarioController {
 
 		btnTrovaVicini.setDisable(false);
 		btnTrovaTutti.setDisable(false);
+		btnTrovaCammino.setDisable(false);
 
 	}
 
@@ -108,6 +116,26 @@ public class DizionarioController {
 		}
 
 	}
+	
+    @FXML
+    void doTrovaCammino(ActionEvent event) {
+
+		String s1 = txtParola.getText() ;
+		String s2 = txtParolaArrivo.getText() ;
+    	
+		if(s1.length() != model.getLen() || s2.length() != model.getLen() ) {
+			txtResult.appendText("Lunghezza parola errata!\n");
+			return ;
+		}
+		List<Parola> cammino = model.getCammino(s1, s2) ;
+
+		txtResult.appendText("***"+s1+" - "+s2+"*** ("+cammino.size()+" passi)\n");
+		
+		for(Parola p: cammino) {
+			txtResult.appendText("\t"+p.getNome()+"\n");
+		}
+
+    }
 
 	@FXML
 	void initialize() {

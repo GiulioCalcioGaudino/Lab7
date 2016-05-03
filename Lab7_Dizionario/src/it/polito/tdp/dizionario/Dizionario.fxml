@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.polito.tdp.dizionario.DizionarioController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.dizionario.DizionarioController">
    <top>
       <Label text="Lab7: grafo parole simili" BorderPane.alignment="CENTER" />
    </top>
@@ -29,11 +28,18 @@
                   <TextField fx:id="txtParola" />
                </children>
             </HBox>
+            <HBox layoutX="15.0" layoutY="50.0">
+               <children>
+                  <Label prefWidth="120.0" text="Parola di arrivo" />
+                  <TextField fx:id="txtParolaArrivo" />
+               </children>
+            </HBox>
             <HBox alignment="TOP_CENTER" spacing="20.0">
                <children>
                   <Button fx:id="btnGeneraGrafo" mnemonicParsing="false" onAction="#doGeneraGrafo" text="Genera grafo" />
                   <Button fx:id="btnTrovaVicini" disable="true" mnemonicParsing="false" onAction="#doTrovaVicini" text="Trova vicini" />
                   <Button fx:id="btnTrovaTutti" disable="true" mnemonicParsing="false" onAction="#doTrovaTutti" text="Trova tutti" />
+                  <Button fx:id="btnTrovaCammino" disable="true" layoutX="259.0" layoutY="10.0" mnemonicParsing="false" onAction="#doTrovaCammino" text="Trova cammino" />
                </children>
             </HBox>
             <TextArea fx:id="txtResult" prefColumnCount="30" />
