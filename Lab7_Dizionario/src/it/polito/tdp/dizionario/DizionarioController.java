@@ -1,9 +1,11 @@
 package it.polito.tdp.dizionario;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.dizionario.model.Model;
+import it.polito.tdp.dizionario.model.Parola;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,11 +66,46 @@ public class DizionarioController {
 
 	@FXML
 	void doTrovaTutti(ActionEvent event) {
+		
+		String s = txtParola.getText() ;
+		
+		if(s.length() != model.getLen()) {
+			txtResult.appendText("Lunghezza parola errata!\n");
+			return ;
+		}
+		
+		List<Parola> tutti = model.getTutti(s) ;
+		
+		txtResult.appendText("***"+s+"*** ("+tutti.size()+" parole)\n");
+		
+		for(Parola p: tutti) {
+			txtResult.appendText("\t"+p.getNome()+"\n");
+		}
+
 
 	}
 
 	@FXML
 	void doTrovaVicini(ActionEvent event) {
+		
+		String s = txtParola.getText() ;
+		
+		if(s.length() != model.getLen()) {
+			txtResult.appendText("Lunghezza parola errata!\n");
+			return ;
+		}
+		
+		List<Parola> vicini = model.getVicini(s) ;
+		if (vicini==null) {
+			txtResult.appendText("Parola inesistente!\n");
+			return ;
+		}
+		
+		txtResult.appendText("***"+s+"*** ("+vicini.size()+" parole)\n");
+		
+		for(Parola p: vicini) {
+			txtResult.appendText("\t"+p.getNome()+"\n");
+		}
 
 	}
 
