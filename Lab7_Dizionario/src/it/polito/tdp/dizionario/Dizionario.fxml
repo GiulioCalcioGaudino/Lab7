@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.polito.tdp.dizionario.DizionarioController">
+   <top>
+      <Label text="Lab7: grafo parole simili" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox>
+               <children>
+                  <Label prefWidth="120.0" text="Numero di lettere:" />
+                  <TextField fx:id="txtLen" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label prefWidth="120.0" text="Parola da cercare:" />
+                  <TextField fx:id="txtParola" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" spacing="20.0">
+               <children>
+                  <Button fx:id="btnGeneraGrafo" mnemonicParsing="false" onAction="#doGeneraGrafo" text="Genera grafo" />
+                  <Button fx:id="btnTrovaVicini" disable="true" mnemonicParsing="false" onAction="#doTrovaVicini" text="Trova vicini" />
+                  <Button fx:id="btnTrovaTutti" disable="true" mnemonicParsing="false" onAction="#doTrovaTutti" text="Trova tutti" />
+               </children>
+            </HBox>
+            <TextArea fx:id="txtResult" prefColumnCount="30" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
