@@ -99,7 +99,7 @@ public class ParolaDAO {
 
 	private List<Parola> paroleSimiliInPosizione(Parola p, int pos) {
 
-		String sql = "select id, nome from parola where nome LIKE ?";
+		String sql = "select id, nome from parola where lun = ? AND nome LIKE ?";
 
 		String pattern = p.getNome().substring(0, pos) + "_" + 
 				p.getNome().substring(pos + 1) ;
@@ -110,7 +110,8 @@ public class ParolaDAO {
 
 			PreparedStatement st = conn.prepareStatement(sql) ;
 			
-			st.setString(1, pattern);
+			st.setInt(1, p.getNome().length());
+			st.setString(2, pattern);
 			
 			ResultSet res = st.executeQuery() ;
 			

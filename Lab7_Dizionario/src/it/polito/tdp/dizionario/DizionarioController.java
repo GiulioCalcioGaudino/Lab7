@@ -60,11 +60,15 @@ public class DizionarioController {
 			return;
 		}
 
+		long startTime = System.nanoTime() ;
 		model.caricaParole(lun);
-
-		txtResult.appendText("Parole caricate: " + model.getDict().size() + "\n");
-
+		
 		model.buildGraph();
+		long endTime = System.nanoTime() ;
+
+		
+		txtResult.appendText(String.format("Parole caricate: %d (%d ms)\n", model.getDict().size(), (endTime-startTime)/1000000));
+
 
 		btnTrovaVicini.setDisable(false);
 		btnTrovaTutti.setDisable(false);
