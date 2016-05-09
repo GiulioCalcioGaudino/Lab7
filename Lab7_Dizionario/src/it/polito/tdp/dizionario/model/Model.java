@@ -46,11 +46,15 @@ public class Model {
 
 		Graphs.addAllVertices(graph, this.dict);
 
+		ParolaDAO dao = new ParolaDAO();
+
 		for (Parola p1 : this.dict) {
-			for (Parola p2 : this.dict) {
-				if (simili(p1, p2)) {
+
+			List<Parola> paroleSimili = dao.paroleSimili(p1);
+
+			for (Parola p2 : paroleSimili) {
+				if (!p1.getNome().equals(p2.getNome()))
 					graph.addEdge(p1, p2);
-				}
 			}
 		}
 
@@ -127,26 +131,26 @@ public class Model {
 	 *         non sono valide, oppure se non esiste un cammino
 	 */
 	public List<Parola> getCammino(String s1, String s2) {
-		Parola p1 = findParola(s1) ;
-		Parola p2 = findParola(s2) ;
+		Parola p1 = findParola(s1);
+		Parola p2 = findParola(s2);
 
-		if(p1==null || p2==null)
-			return null ;
-		
-		
-		DijkstraShortestPath<Parola, DefaultEdge> dijkstra =
-				new DijkstraShortestPath<Parola, DefaultEdge>(graph, p1, p2) ;
-		
-		GraphPath<Parola, DefaultEdge> path = dijkstra.getPath() ;
-		if (path==null)
-			return null ;
-		
-		return Graphs.getPathVertexList(path) ;
-		
+		if (p1 == null || p2 == null)
+			return null;
+
+		DijkstraShortestPath<Parola, DefaultEdge> dijkstra = new DijkstraShortestPath<Parola, DefaultEdge>(graph, p1,
+				p2);
+
+		GraphPath<Parola, DefaultEdge> path = dijkstra.getPath();
+		if (path == null)
+			return null;
+
+		return Graphs.getPathVertexList(path);
+
 		/*
-		FloydWarshallShortestPaths<Parola, DefaultEdge> floyd = new FloydWarshallShortestPaths<>(graph) ;
-		return Graphs.getPathVertexList(floyd.getShortestPath(p1, p2)) ;
-		*/
+		 * FloydWarshallShortestPaths<Parola, DefaultEdge> floyd = new
+		 * FloydWarshallShortestPaths<>(graph) ; return
+		 * Graphs.getPathVertexList(floyd.getShortestPath(p1, p2)) ;
+		 */
 	}
 
 }
