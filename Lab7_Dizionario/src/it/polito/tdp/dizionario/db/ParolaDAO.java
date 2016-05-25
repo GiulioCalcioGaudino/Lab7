@@ -98,6 +98,9 @@ public class ParolaDAO {
 	}
 
 	private List<Parola> paroleSimiliInPosizione(Parola p, int pos) {
+//		creo nuova colonna in parola
+//		eseguo la query sql "UPDATE parola set lun = CHARACTER_LENGTH(nome);"
+//		metto la lunghezza come chiave (verde)
 
 		String sql = "select id, nome from parola where lun = ? AND nome LIKE ?";
 
